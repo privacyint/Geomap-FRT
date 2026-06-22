@@ -231,7 +231,7 @@
   .svgMap-country {
     fill: var(--svg-map-country-fill, #E2E2E2);
     stroke: $countryStrokeColor;
-    stroke-width: 1;
+    stroke-width: 0.5;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
     transition:

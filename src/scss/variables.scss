@@ -1,31 +1,31 @@
-// General
-$textColor: #111 !default;
-$textColorLight: #777 !default;
+// General — Privacy International brand palette
+$textColor: #1a1a1a !default;              // Near-black for max readability
+$textColorLight: #666666 !default;         // Mid-gray for secondary text
 
 // Map
-$colorNoData: #E2E2E2 !default;
-$oceanColor: #d9ecff !default;
-$mapActiveStrokeColor: #333 !default;
+$colorNoData: #d4d9e0 !default;            // Soft neutral gray (no data)
+$oceanColor: #aad4e8 !default;             // Bright ocean blue (ocean background)
+$mapActiveStrokeColor: #1e3283 !default;   // PI brand blue (country borders)
 $mapActiveStrokeWidth: 1.5 !default;
 $blockZoomNoticeColor: #fff !default;
-$blockZoomNoticeBackgroundColor: rgba(0, 0, 0, 0.8) !default;
+$blockZoomNoticeBackgroundColor: rgba(44, 62, 80, 0.85) !default;  // Deep slate with opacity
 
 // Map Controls
-$mapControlsColor: #fff !default;
-$mapControlsBackgroundColor: #fff !default;
-$mapControlsIconColor: #ccc !default;
-$mapControlsIconColorActive: #000 !default;
-$mapControlsDisabledColor: #eee !default;
-$mapControlsBoxShadow: 0 0 0 2px rgba(0, 0, 0, 0.1) !default;
+$mapControlsColor: #1e3283 !default;       // PI blue (icon color)
+$mapControlsBackgroundColor: #ffffff !default;
+$mapControlsIconColor: #95a5a6 !default;   // Light gray icons
+$mapControlsIconColorActive: #1e3283 !default;  // PI blue when active
+$mapControlsDisabledColor: #ecf0f1 !default;
+$mapControlsBoxShadow: 0 2px 8px rgba(44, 62, 80, 0.12) !default;  // Subtle shadow
 
 // Map Tooltip
-$mapTooltipColor: #111 !default;
-$mapTooltipBackgroundColor: #fff !default;
-$mapTooltipFlagBackgroundColor: rgba(0, 0, 0, 0.15) !default;
-$mapTooltipBoxShadowColor: rgba(0, 0, 0, 0.2) !default;
+$mapTooltipColor: #1a1a1a !default;
+$mapTooltipBackgroundColor: #ffffff !default;
+$mapTooltipFlagBackgroundColor: rgba(44, 62, 80, 0.08) !default;  // Subtle slate tint
+$mapTooltipBoxShadowColor: rgba(44, 62, 80, 0.15) !default;  // Slate shadow for depth
 
 // Continent Controls
-$continentControlsBoxShadow: 0 0 0 2px rgba(0, 0, 0, 0.1) !default;
+$continentControlsBoxShadow: 0 2px 8px rgba(44, 62, 80, 0.12) !default;
 
 // Country
-$countryStrokeColor: #fff !default;
+$countryStrokeColor: #000000 !default;     // Black borders for stronger contrast

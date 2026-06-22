@@ -1,0 +1,386 @@
+<!doctype html>
+<html>
+  <head>
+    <title>School Surveillance Technology Map</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="../../dist/svg-map.umd.min.js"></script>
+    <link href="../../dist/svg-map.min.css" rel="stylesheet" />
+
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .contribution-note {
+        margin-top: 18px;
+        color: #4d4d4d;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .pi-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 22px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #dbe3f3;
+      }
+
+      .pi-logo {
+        text-align: left;
+        margin-bottom: 0;
+        flex: 0 0 auto;
+      }
+
+      .pi-logo img {
+        max-width: 58px;
+        width: auto;
+        height: auto;
+        display: inline-block;
+      }
+
+      .pi-nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .pi-nav a {
+        display: inline-block;
+        color: #111;
+        text-decoration: none;
+        border: 0;
+        border-radius: 0;
+        padding: 2px 0;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        background: transparent;
+      }
+
+      .pi-nav a:hover {
+        color: #1e3283;
+        text-decoration: underline;
+      }
+
+      .pi-nav a.pi-nav-donate {
+        background: #dafaff;
+        border: 1px solid #00cfe8;
+        border-radius: 999px;
+        padding: 6px 12px;
+        letter-spacing: 0.02em;
+      }
+
+      .pi-nav a.pi-nav-donate:hover {
+        background: #97f4ff;
+        text-decoration: none;
+      }
+
+      .read-more-note {
+        margin-top: 10px;
+        color: #4d4d4d;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .read-more-note a {
+        color: #1e3283;
+      }
+
+      .contribution-note a {
+        color: #1e3283;
+      }
+
+      h1 {
+        margin-top: 0;
+        text-align: center;
+        color: #1a1a1a;
+        font-size: 28px;
+        font-family: 'Gilroy', 'Avenir Next', Avenir, 'Segoe UI', Arial, sans-serif;
+      }
+
+      .description {
+        color: #666;
+        margin-bottom: 30px;
+        line-height: 1.6;
+      }
+
+      #svgMapSurveillance {
+        width: 100%;
+        height: 600px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        background: white;
+      }
+
+      .legend {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      .legend-title {
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #1a1a1a;
+      }
+
+      .legend-item {
+        display: inline-block;
+        margin-right: 30px;
+        margin-bottom: 10px;
+      }
+
+      .legend-color {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 3px;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      .legend-text {
+        display: inline-block;
+        vertical-align: middle;
+        color: #666;
+      }
+
+      @media (max-width: 760px) {
+        .pi-topbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .pi-nav {
+          justify-content: flex-start;
+        }
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="pi-topbar">
+        <div class="pi-logo">
+          <img src="./images/privacy-international-logo.png" alt="Privacy International logo" />
+        </div>
+
+        <div class="pi-nav" aria-label="Primary">
+          <a href="https://privacyinternational.org/search" target="_blank" rel="noopener noreferrer">Search</a>
+          <a href="https://privacyinternational.org/news" target="_blank" rel="noopener noreferrer">News</a>
+          <a href="https://privacyinternational.org/guides" target="_blank" rel="noopener noreferrer">Guides</a>
+          <a href="https://privacyinternational.org/campaigns" target="_blank" rel="noopener noreferrer">Campaigns</a>
+          <a href="https://privacyinternational.org/learn" target="_blank" rel="noopener noreferrer">Learn</a>
+          <a href="https://privacyinternational.org/impact" target="_blank" rel="noopener noreferrer">Impact</a>
+          <a href="https://privacyinternational.org/about" target="_blank" rel="noopener noreferrer">About</a>
+          <a class="pi-nav-donate" href="https://action.privacyinternational.org/civicrm/contribute/transact?reset=1&amp;id=1" target="_blank" rel="noopener noreferrer">Donate</a>
+        </div>
+      </div>
+
+      <h1>Mapping Surveillance Technologies in Educational Settings</h1>
+      
+      <div class="description">
+        This map shows which countries have surveillance technologies deployed in schools. Dark blue indicates surveillance technology is used; gray indicates no data or absence of surveillance.
+      </div>
+
+      <div id="svgMapSurveillance"></div>
+
+      <div class="legend">
+        <div class="legend-title">Surveillance Status</div>
+        <div class="legend-item">
+          <span class="legend-color" style="background: #1e3283;"></span>
+          <span class="legend-text">Yes — Surveillance technology identified</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background: #d4d9e0;"></span>
+          <span class="legend-text">No — No data or not present</span>
+        </div>
+
+        <p class="contribution-note">
+          If you know of surveillance technology being used in schools that is not yet on this list,
+          please email us at
+          <a href="mailto:info@privacyinternational.org">info@privacyinternational.org</a>
+          with a link to the news source, report, or other evidence.
+        </p>
+
+        <p class="read-more-note">
+          To read more about our work on edtech, visit:
+          <a href="https://privacyinternational.org/campaigns/securitising-education" target="_blank" rel="noopener noreferrer">https://privacyinternational.org/campaigns/securitising-education</a>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      function renderMap(surveillanceData) {
+        new svgMap({
+          targetElementID: 'svgMapSurveillance',
+          data: surveillanceData,
+          colorMin: '#1e3283',
+          colorMax: '#1e3283',
+          colorNoData: '#d4d9e0',
+          thresholdMin: 1,
+          thresholdMax: 1,
+          mouseWheelZoomEnabled: true,
+          mouseWheelZoomWithKey: true,
+          showContinentSelector: false,
+          showZoomReset: true,
+          flagType: 'emoji',
+          tooltipTrigger: 'click',
+          onGetTooltip: function (tooltipDiv, countryID, countryValues) {
+            var svgMapInstance = this;
+            var countries = svgMapInstance.countries;
+            var countryName =
+              (countryValues && countryValues.countryName) ||
+              countries[countryID] ||
+              'Unknown country';
+
+            var tooltipContentElement = document.createElement('div');
+            tooltipContentElement.style.padding = '0';
+
+            var innerHTML = '';
+
+            if (countryValues) {
+              var hasSurveillance =
+                countryValues.surveillanceExists === 'Y'
+                  ? 'Yes'
+                  : 'No data';
+              var hasChallenge =
+                countryValues.legalChallenge === 'Y'
+                  ? 'Yes'
+                  : 'No data';
+              var challengeColor = countryValues.legalChallenge === 'Y' ? '#2c3e50' : '#999';
+              var trackerLink = countryValues.trackerLink || '#';
+              var showTrackerLink = countryValues.surveillanceExists === 'Y' && trackerLink !== '#';
+              var flagUrl =
+                'https://cdn.jsdelivr.net/gh/hjnilsson/country-flags@latest/svg/' +
+                countryID.toLowerCase() +
+                '.svg';
+              var emojiFlag = (svgMapInstance.emojiFlags && svgMapInstance.emojiFlags[countryID]) || '';
+
+              innerHTML = '<div style="padding: 12px 16px;">' +
+                '<div style="text-align: center; margin-bottom: 10px;">' +
+                '<img src="' + flagUrl + '" alt="Flag of ' + countryName + '" style="height: 28px; width: auto; border: 1px solid #d9d9d9; border-radius: 2px;" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\';" />' +
+                '<span style="display: none; font-size: 22px; line-height: 1;">' + emojiFlag + '</span>' +
+                '</div>' +
+                '<div style="font-weight: 600; margin-bottom: 12px; font-size: 16px;">' + countryName + '</div>' +
+                '<div style="margin-bottom: 8px;">' +
+                '<span style="color: #666; font-size: 12px; display: block; margin-bottom: 3px;">Instances of Surveillance Tech used in schools:</span>' +
+                '<span style="font-weight: 600; color: ' + (hasSurveillance === 'Yes' ? '#1e3283' : '#999') + ';">' + hasSurveillance + '</span>' +
+                '</div>' +
+                '<div style="margin-bottom: 12px;">' +
+                '<span style="color: #666; font-size: 12px; display: block; margin-bottom: 3px;">legal action innitiated:</span>' +
+                '<span style="font-weight: 600; color: ' + challengeColor + ';">' + hasChallenge + '</span>' +
+                '</div>' +
+                (showTrackerLink
+                  ? '<div style="padding-top: 12px; border-top: 1px solid #e0e0e0;">' +
+                    '<a href="' + trackerLink + '" target="_blank" style="color: #1e3283; text-decoration: underline; font-weight: 500; font-size: 13px;">Open PI News Tracker ↗</a>' +
+                    '</div>'
+                  : '') +
+                '</div>';
+            } else {
+              var fallbackFlagUrl =
+                'https://cdn.jsdelivr.net/gh/hjnilsson/country-flags@latest/svg/' +
+                countryID.toLowerCase() +
+                '.svg';
+              var fallbackEmojiFlag = (svgMapInstance.emojiFlags && svgMapInstance.emojiFlags[countryID]) || '';
+
+              innerHTML = '<div style="padding: 12px 16px;">' +
+                '<div style="text-align: center; margin-bottom: 10px;">' +
+                '<img src="' + fallbackFlagUrl + '" alt="Flag of ' + countryName + '" style="height: 28px; width: auto; border: 1px solid #d9d9d9; border-radius: 2px;" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\';" />' +
+                '<span style="display: none; font-size: 22px; line-height: 1;">' + fallbackEmojiFlag + '</span>' +
+                '</div>' +
+                '<div style="font-weight: 600; margin-bottom: 8px;">' + countryName + '</div>' +
+                '<div style="color: #999; font-size: 13px;">No data available</div>' +
+                '</div>';
+            }
+
+            tooltipContentElement.innerHTML = innerHTML;
+            tooltipDiv.innerHTML = '';
+            tooltipDiv.appendChild(tooltipContentElement);
+          }
+        });
+      }
+
+      fetch('./data/surveillance-schools.json')
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('Failed to load surveillance-schools.json');
+          }
+          return response.json();
+        })
+        .then(function (values) {
+          var normalizedValues = {};
+
+          Object.keys(values).forEach(function (countryID) {
+            var entry = values[countryID] || {};
+            var rawSurveillanceExists = String(entry.surveillanceExists || '').toUpperCase();
+            var surveillanceExists =
+              rawSurveillanceExists === 'Y' || rawSurveillanceExists === 'N'
+                ? rawSurveillanceExists
+                : '';
+            var rawLegalChallenge = String(entry.legalChallenge || '').toUpperCase();
+            var legalChallenge =
+              rawLegalChallenge === 'Y' || rawLegalChallenge === 'N'
+                ? rawLegalChallenge
+                : '';
+
+            normalizedValues[countryID] = {
+              // Keep applyData numeric for svgMap internals while exposing Y/N in the JSON
+              surveillance: surveillanceExists === 'Y' ? 1 : 0,
+              surveillanceExists: surveillanceExists,
+              countryName: entry.countryName || '',
+              legalChallenge: legalChallenge,
+              trackerLink: entry.trackerLink || '',
+              color: surveillanceExists === 'Y' ? '#1e3283' : '#d4d9e0'
+            };
+          });
+
+          renderMap({
+            data: {
+              surveillance: {}
+            },
+            applyData: 'surveillance',
+            values: normalizedValues
+          });
+        })
+        .catch(function (error) {
+          console.error('Failed to load surveillance data JSON:', error);
+          var description = document.querySelector('.description');
+          if (description) {
+            description.innerHTML =
+              'Could not load <code>data/surveillance-schools.json</code>. Open this page via <code>http://localhost:8080/...</code> instead of <code>file://</code>.';
+          }
+          renderMap({
+            data: {
+              surveillance: {}
+            },
+            applyData: 'surveillance',
+            values: {}
+          });
+        });
+    </script>
+  </body>
+</html>

@@ -2,20 +2,19 @@
 
 .svgMap-tooltip,
 .svgMap-persistent-tooltip {
-  box-shadow: 0 0 3px $mapTooltipBoxShadowColor;
+  box-shadow: 0 4px 12px $mapTooltipBoxShadowColor;
   position: absolute;
   z-index: 2;
-  border-radius: 2px;
+  border-radius: 6px;
   background: $mapTooltipBackgroundColor;
   transform: translate(-50%, -100%);
-  border-bottom: 1px solid $mapTooltipColor;
-  pointer-events: none;
+  border: 1px solid rgba(44, 62, 80, 0.1);
+  pointer-events: auto;
   min-width: 60px;
+  overflow: hidden;
 
   &.svgMap-tooltip-flipped {
     transform: translate(-50%, 0);
-    border-bottom: 0;
-    border-top: 1px solid $mapTooltipColor;
   }
 
   .svgMap-tooltip-content-container {
@@ -47,9 +46,11 @@
   .svgMap-tooltip-title {
     white-space: nowrap;
     font-size: 18px;
+    font-weight: 600;
     line-height: 28px;
-    padding: 0 0 8px;
+    padding: 10px 20px 6px;
     text-align: center;
+    color: $textColor;
   }
 
   .svgMap-tooltip-content {
@@ -57,7 +58,8 @@
     text-align: center;
     font-size: 14px;
     color: $textColorLight;
-    margin: -5px 0 0;
+    padding: 0 20px 10px;
+    margin: 0;
 
     table {
       padding: 0;
@@ -106,11 +108,12 @@
       width: 20px;
       height: 20px;
       background: $mapTooltipBackgroundColor;
-      border: 1px solid $mapTooltipColor;
+      border: 1px solid rgba(44, 62, 80, 0.1);
       position: absolute;
       bottom: 6px;
       left: 50%;
       transform: translateX(-50%) rotate(45deg);
+      box-shadow: -2px -2px 4px rgba(44, 62, 80, 0.08);
     }
   }
 
