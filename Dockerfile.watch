@@ -1,0 +1,13 @@
+FROM node:20-bullseye
+
+WORKDIR /app
+
+ENV npm_config_cache=/tmp/.npm
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+
+# Rollup watch mode for iterative local development in a container
+CMD ["npm", "run", "watch"]

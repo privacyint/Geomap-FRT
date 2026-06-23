@@ -26,6 +26,24 @@ import 'svgmap/dist/svg-map.css';
 <link href="https://cdn.jsdelivr.net/npm/svgmap@v2.19.2/dist/svg-map.min.css" rel="stylesheet">
 ```
 
+### Docker
+
+Build the project in Docker:
+
+```bash
+docker build -t svgmap-build:local .
+docker run --rm -v "$PWD":/app -w /app svgmap-build:local npm run build
+```
+
+Run the Rollup watcher in Docker:
+
+```bash
+docker build -f Dockerfile.watch -t svgmap-watch:local .
+docker run --rm -it -v "$PWD":/app -w /app svgmap-watch:local
+```
+
+The default `Dockerfile` installs dependencies, runs `npm run build`, and verifies the generated assets with `node test/assets.js`. `Dockerfile.watch` is intended for local development and starts `npm run watch`.
+
 ---
 
 ## Usage

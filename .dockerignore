@@ -1,0 +1,18 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Build output
+dist
+
+# VCS and editor artifacts
+.git
+.gitignore
+.vscode
+.DS_Store
+
+# Docker metadata
+Dockerfile*
+
+# Existing large/generated folders not needed for core image builds
+demo/**/node_modules
