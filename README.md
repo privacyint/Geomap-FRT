@@ -1,0 +1,221 @@
+# Geomap-FRT
+
+Geomap-FRT is Privacy International's interactive mapping project for documenting facial recognition use in schools and related surveillance contexts.
+
+The repository is built on top of `svgMap`, a lightweight JavaScript library for rendering interactive SVG world maps with country-level data, tooltips, links, and custom styling, originally created by Stephan Wagner.
+
+It is designed for campaign pages, public research outputs, and geographic storytelling, while remaining usable as a general-purpose mapping library in plain HTML, ES modules, and React.
+
+## About This Repo
+
+This repository serves two purposes:
+
+- it contains the `svgMap` library source and distributable bundles
+- it includes Privacy International demo implementations, including the school surveillance map
+
+If you are here for the campaign-facing example, start with `demo/html/surveillance-schools.html`.
+
+## Highlights
+
+- Interactive SVG world map with pan and zoom
+- Country-level color visualization from your own data
+- Privacy International demo for mapping facial recognition in schools
+- Custom tooltip rendering and click handling
+- Persistent labels and static pins
+- Works in plain HTML, ES modules, and React
+- SCSS source included for style customization
+- Small runtime surface with a single dependency: `svg-pan-zoom`
+
+## Installation
+
+### npm
+
+```bash
+npm install svgmap
+```
+
+```js
+import svgMap from 'svgmap';
+import 'svgmap/dist/svg-map.css';
+```
+
+### CDN
+
+```html
+<link href="https://cdn.jsdelivr.net/npm/svgmap@2.21.0/dist/svg-map.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/svgmap@2.21.0/dist/svg-map.umd.min.js"></script>
+```
+
+## Quick Start
+
+```html
+<div id="svgMap"></div>
+
+<script>
+  new svgMap({
+    targetElementID: 'svgMap',
+    data: {
+      data: {
+        population: {
+          name: 'Population',
+          format: '{0}',
+          thousandSeparator: ',',
+          thresholdMin: 0,
+          thresholdMax: 1000000000
+        }
+      },
+      applyData: 'population',
+      values: {
+        US: { population: 331002651 },
+        BR: { population: 212559417 },
+        DE: { population: 83240525 },
+        ZA: { population: 59308690 }
+      }
+    }
+  });
+</script>
+```
+
+## Data Model
+
+svgMap expects a dataset with:
+
+- `data`: metric definitions
+- `applyData`: the metric key used for map coloring
+- `values`: country values keyed by ISO 3166-1 alpha-2 code
+
+Example:
+
+```js
+{
+  data: {
+    metricA: {
+      name: 'Metric A',
+      format: '{0} units',
+      thousandSeparator: ',',
+      thresholdMin: 0,
+      thresholdMax: 100
+    }
+  },
+  applyData: 'metricA',
+  values: {
+    US: { metricA: 42, link: 'https://example.com' },
+    FR: { metricA: 77, color: '#1357c5' }
+  }
+}
+```
+
+## Core Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `targetElementID` | `string` | - | Required. ID of the container element. |
+| `data` | `object` | - | Required. Dataset used for coloring and tooltip content. |
+| `allowInteraction` | `boolean` | `true` | Enables pan and zoom interaction. |
+| `minZoom` | `number` | `1` | Minimum zoom level. |
+| `maxZoom` | `number` | `25` | Maximum zoom level. |
+| `initialZoom` | `number` | `1.06` | Initial zoom level. |
+| `showTooltips` | `boolean` | `true` | Enables floating tooltips. |
+| `tooltipTrigger` | `hover \| click` | `hover` | Tooltip activation mode. |
+| `persistentTooltips` | `false \| array \| function` | `false` | Renders labels pinned to countries. |
+| `staticPins` | `false \| array \| function` | `false` | Renders static markers on countries. |
+| `colorMin` | `string` | `#FFE5D9` | Minimum scale color. |
+| `colorMax` | `string` | `#CC0033` | Maximum scale color. |
+| `colorNoData` | `string` | `#E2E2E2` | Fill color for countries without data. |
+| `ratioType` | `linear \| log \| function` | `linear` | Value-to-color interpolation mode. |
+| `onGetTooltip` | `function` | - | Custom tooltip renderer. |
+| `onCountryClick` | `function` | - | Callback for country click events. |
+
+Implementation details live in `src/js/core/svg-map.js`.
+
+## Styling
+
+Default styles are generated from SCSS and shipped in `dist/`.
+
+- SCSS entry: `src/scss/svg-map.scss`
+- Variables: `src/scss/variables.scss`
+- Runtime fill color: `--svg-map-country-fill`
+
+If you want to customize the look deeply, start from the SCSS source instead of overriding compiled CSS blindly.
+
+## Localization
+
+Use the `countryNames` option to replace displayed country names with your own translations.
+
+Reference files are available in:
+
+- `demo/html/local/`
+- `demo/es6/local/`
+
+## Featured Demo
+
+The main public-facing example in this repository is:
+
+- `demo/html/surveillance-schools.html` — Mapping Facial Recognition use in Schools
+
+This demo shows how the map can support campaign communications, country-level research, custom legend design, and targeted calls to action.
+
+## Additional Demos
+
+- `demo/html/` — plain HTML usage
+- `demo/es6/` — ES module usage
+- `demo/react/` — React integration
+
+## Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Build distributable files:
+
+```bash
+npm run build
+```
+
+Watch for changes during development:
+
+```bash
+npm run watch
+```
+
+Validate the built assets:
+
+```bash
+node test/assets.js
+```
+
+`prepublishOnly` runs the build and asset validation automatically.
+
+## Privacy International Context
+
+The school surveillance demo is part of Privacy International's wider work on surveillance in education and facial recognition technologies.
+
+- School surveillance map: `demo/html/surveillance-schools.html`
+- Campaign context: https://privacyinternational.org/campaigns/securitising-education
+
+The repo is suitable both as a reusable map component and as a reference implementation for advocacy and research publishing.
+
+## Project Structure
+
+```text
+src/js/core/svg-map.js    Main library class
+src/js/index.js           Package entry point
+src/scss/                 SCSS source for map and tooltip styles
+dist/                     Built distributable bundles
+demo/                     HTML, ES module, and React demos
+assets/                   Helper tools for map path generation and localization
+test/assets.js            Build output smoke check
+```
+
+## Attribution
+
+- `svgMap` was originally created by Stephan Wagner
+- Pan and zoom powered by `svg-pan-zoom`
+- Flag assets in demos via `country-flags`
+
+## License
+
+MIT
