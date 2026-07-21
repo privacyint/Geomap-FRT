@@ -401,6 +401,12 @@
         display: none;
       }
 
+      /* CDN svgMap@2.21.0 sets inline pointer-events:none on tooltip; force-enable interaction. */
+      .svgMap-tooltip,
+      .svgMap-tooltip * {
+        pointer-events: auto !important;
+      }
+
     </style>
   </head>
 
@@ -720,7 +726,7 @@
                 '</div>' +
                 (showTrackerLink
                   ? '<div style="padding-top: 12px; border-top: 1px solid #e0e0e0;">' +
-                    '<a href="' + trackerLink + '" target="_blank" style="color: #1e3283; text-decoration: underline; font-weight: 500; font-size: 13px;">Open PI News Tracker ↗</a>' +
+                    '<a class="js-tracker-link" href="' + trackerLink + '" target="_blank" rel="noopener noreferrer" style="color: #1e3283; text-decoration: underline; font-weight: 500; font-size: 13px;">Open PI News Tracker ↗</a>' +
                     '</div>'
                   : '') +
                 '</div>';
@@ -745,10 +751,35 @@
             }
 
             tooltipContentElement.innerHTML = innerHTML;
+
+            var trackerAnchor = tooltipContentElement.querySelector('.js-tracker-link');
+            if (trackerAnchor) {
+              ['pointerdown', 'mousedown', 'touchstart', 'click'].forEach(function (eventName) {
+                trackerAnchor.addEventListener(eventName, function (event) {
+                  event.stopPropagation();
+                });
+              });
+            }
+
             tooltipDiv.innerHTML = '';
             tooltipDiv.appendChild(tooltipContentElement);
           }
         });
+
+        // Patch hideTooltip so moving the mouse from a country to the tooltip
+        // (over empty SVG space) does not close the tooltip before the user can
+        // click the news-tracker link inside it.
+        var originalHideTooltip = mapInstance.hideTooltip.bind(mapInstance);
+        mapInstance.hideTooltip = function () {
+          if (
+            mapInstance.tooltip &&
+            mapInstance.tooltip.classList.contains('svgMap-active') &&
+            mapInstance.tooltip.matches(':hover')
+          ) {
+            return;
+          }
+          originalHideTooltip();
+        };
 
         // Palestine borders from https://github.com/nunoguerreirodesousa/svgmap/pull/1
         var psBorderPathFromPr =
@@ -758,25 +789,18 @@
           psCountry.setAttribute('d', psBorderPathFromPr);
 
           var keepPalestineOnTop = function () {
-            if (psCountry.parentNode) {
+            if (psCountry.parentNode && psCountry.parentNode.lastChild !== psCountry) {
               psCountry.parentNode.appendChild(psCountry);
             }
           };
 
           keepPalestineOnTop();
 
-          var israelCountry = mapInstance.mapImage.querySelector('[data-id="IL"]');
-          if (israelCountry) {
-            ['pointerenter', 'pointerdown', 'click', 'focus'].forEach(function (eventName) {
-              israelCountry.addEventListener(
-                eventName,
-                function () {
-                  requestAnimationFrame(keepPalestineOnTop);
-                },
-                { passive: true }
-              );
-            });
-          }
+          // Use a MutationObserver so Palestine stays on top whenever ANY other
+          // country element is raised (e.g. on every pointermove over Israel),
+          // without relying on a specific event list that might miss cases.
+          var psObserver = new MutationObserver(keepPalestineOnTop);
+          psObserver.observe(psCountry.parentNode, { childList: true });
         }
 
       }
