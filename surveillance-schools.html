@@ -756,6 +756,27 @@
         var psCountry = mapInstance.mapImage.querySelector('[data-id="PS"]');
         if (psCountry) {
           psCountry.setAttribute('d', psBorderPathFromPr);
+
+          var keepPalestineOnTop = function () {
+            if (psCountry.parentNode) {
+              psCountry.parentNode.appendChild(psCountry);
+            }
+          };
+
+          keepPalestineOnTop();
+
+          var israelCountry = mapInstance.mapImage.querySelector('[data-id="IL"]');
+          if (israelCountry) {
+            ['pointerenter', 'pointerdown', 'click', 'focus'].forEach(function (eventName) {
+              israelCountry.addEventListener(
+                eventName,
+                function () {
+                  requestAnimationFrame(keepPalestineOnTop);
+                },
+                { passive: true }
+              );
+            });
+          }
         }
 
       }
