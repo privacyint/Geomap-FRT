@@ -11,15 +11,15 @@ It is designed for campaign pages, public research outputs, and geographic story
 This repository serves two purposes:
 
 - it contains the `svgMap` library source and distributable bundles
-- it includes Privacy International demo implementations, including the school surveillance map
+- it ships Privacy International's production school surveillance map
 
-If you are here for the campaign-facing example, start with `demo/html/surveillance-schools.html`.
+If you are here for the campaign-facing map, start with `surveillance-schools.html`.
 
 ## Highlights
 
 - Interactive SVG world map with pan and zoom
 - Country-level color visualization from your own data
-- Privacy International demo for mapping facial recognition in schools
+- Privacy International map for tracking facial recognition in schools
 - Custom tooltip rendering and click handling
 - Persistent labels and static pins
 - Works in plain HTML, ES modules, and React
@@ -147,15 +147,15 @@ Reference files are available in:
 - `demo/html/local/`
 - `demo/es6/local/`
 
-## Featured Demo
+## Featured Map
 
-The main public-facing example in this repository is:
+The main public-facing map in this repository is:
 
-- `demo/html/surveillance-schools.html` — Mapping Facial Recognition use in Schools
+- `surveillance-schools.html` — Mapping Facial Recognition use in Schools
 
-This demo shows how the map can support campaign communications, country-level research, custom legend design, and targeted calls to action.
+This map shows how the project supports campaign communications, country-level research, custom legend design, and targeted calls to action.
 
-## Additional Demos
+## Additional Examples
 
 - `demo/html/` — plain HTML usage
 - `demo/es6/` — ES module usage
@@ -191,9 +191,9 @@ node test/assets.js
 
 ## Privacy International Context
 
-The school surveillance demo is part of Privacy International's wider work on surveillance in education and facial recognition technologies.
+The school surveillance map is part of Privacy International's wider work on surveillance in education and facial recognition technologies.
 
-- School surveillance map: `demo/html/surveillance-schools.html`
+- School surveillance map: `surveillance-schools.html`
 - Campaign context: https://privacyinternational.org/campaigns/securitising-education
 
 The repo is suitable both as a reusable map component and as a reference implementation for advocacy and research publishing.
@@ -205,7 +205,7 @@ src/js/core/svg-map.js    Main library class
 src/js/index.js           Package entry point
 src/scss/                 SCSS source for map and tooltip styles
 dist/                     Built distributable bundles
-demo/                     HTML, ES module, and React demos
+demo/                     HTML, ES module, and React examples
 assets/                   Helper tools for map path generation and localization
 test/assets.js            Build output smoke check
 ```
