@@ -357,9 +357,12 @@
         path.setAttribute('class', 'subnational-region');
         path.setAttribute('data-region-code', regionCode);
         path.setAttribute('data-region-name', regionData.name || regionCode);
+        path.setAttribute('role', 'button');
+        path.setAttribute('tabindex', '0');
+        path.setAttribute('aria-label', 'View details for ' + (regionData.name || regionCode));
         path.style.fill = getStatusColor(regionData.surveillanceExists, regionData.legalChallenge);
 
-        path.addEventListener('click', function (event) {
+        function activateRegion(event) {
           svg.querySelectorAll('.subnational-region.subnational-active').forEach(function (activeEl) {
             activeEl.classList.remove('subnational-active');
           });
@@ -375,8 +378,17 @@
           });
 
           var rect = state.mapStage.getBoundingClientRect();
-          var left = event.clientX - rect.left + 10;
-          var top = event.clientY - rect.top + 10;
+          var left = 0;
+          var top = 0;
+
+          if (typeof event.clientX === 'number' && typeof event.clientY === 'number') {
+            left = event.clientX - rect.left + 10;
+            top = event.clientY - rect.top + 10;
+          } else {
+            var box = path.getBBox();
+            left = box.x + box.width / 2 + 10;
+            top = box.y + box.height / 2 + 10;
+          }
 
           tooltip.style.left = Math.max(8, Math.min(left, rect.width - 300)) + 'px';
           tooltip.style.top = Math.max(8, Math.min(top, rect.height - 180)) + 'px';
@@ -392,6 +404,14 @@
           }
 
           event.stopPropagation();
+        }
+
+        path.addEventListener('click', activateRegion);
+        path.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            activateRegion(event);
+          }
         });
 
         svg.appendChild(path);
