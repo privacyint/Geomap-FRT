@@ -164,6 +164,17 @@
         color: #1e3283;
       }
 
+      .map-disclaimer {
+        margin: 0 0 24px 0;
+        color: #4d4d4d;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .map-disclaimer a {
+        color: #1e3283;
+      }
+
       .timeline-panel {
         margin: 14px 0 26px 0;
         padding: 14px 16px 12px 16px;
@@ -514,6 +525,14 @@
         <div class="last-updated" id="lastUpdated">Last updated: Loading...</div>
       </div>
 
+      <p class="map-disclaimer">
+        This map is a best-effort attempt to visualise the spread of facial recognition in schools around the world.
+        It is based on <a href="https://github.com/StephanWagner/svgMap" target="_blank" rel="noopener noreferrer">Stephan Wagner's SVGMaps project</a>, and should not be taken as an accurate representation, nor used to infer Privacy International's position on any geopolitical issue.
+        We collect as little data as possible; see <a href="https://privacyinternational.org/basic-page/618/how-we-use-and-protect-your-data" target="_blank" rel="noopener noreferrer">How We Use and Protect Your Data</a>.
+      </p>
+
+      <div id="svgMapSurveillance"></div>
+
       <div class="legend">
         <div class="legend-title">Map Legend</div>
         <div class="legend-item">
@@ -529,8 +548,6 @@
           <span class="legend-text">No data or not present</span>
         </div>
       </div>
-
-      <div id="svgMapSurveillance"></div>
 
       <section class="timeline-panel" id="timelinePanel" aria-label="Map timeline" hidden>
         <div class="timeline-header">
