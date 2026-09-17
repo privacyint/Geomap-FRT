@@ -273,13 +273,6 @@
         white-space: nowrap;
       }
 
-      .timeline-years {
-        display: flex;
-        justify-content: space-between;
-        font-size: 12px;
-        color: #657188;
-      }
-
       .timeline-status {
         margin-top: 8px;
         color: #5a6780;
@@ -603,10 +596,6 @@
           aria-label="Timeline year"
         />
         <div class="timeline-year-markers" id="timelineYearMarkers" aria-hidden="true"></div>
-        <div class="timeline-years" aria-hidden="true">
-          <span id="timelineStartYearLabel">-</span>
-          <span id="timelineEndYearLabel">-</span>
-        </div>
         <div class="timeline-status" id="timelineStatus">Loading timeline data...</div>
       </section>
 
@@ -909,8 +898,6 @@
         var timelinePanel = document.getElementById('timelinePanel');
         var timelineRange = document.getElementById('timelineRange');
         var timelineYearMarkers = document.getElementById('timelineYearMarkers');
-        var timelineStartYearLabel = document.getElementById('timelineStartYearLabel');
-        var timelineEndYearLabel = document.getElementById('timelineEndYearLabel');
         var timelinePlayButton = document.getElementById('timelinePlayButton');
 
         if (!timelinePanel || !timelineRange) {
@@ -957,14 +944,6 @@
             if (timelinePlayButton) {
               timelinePlayButton.disabled = false;
               timelinePlayButton.onclick = toggleTimelinePlayback;
-            }
-
-            if (timelineStartYearLabel) {
-              timelineStartYearLabel.textContent = String(startYear);
-            }
-
-            if (timelineEndYearLabel) {
-              timelineEndYearLabel.textContent = String(endYear);
             }
 
             if (timelineYearMarkers) {
