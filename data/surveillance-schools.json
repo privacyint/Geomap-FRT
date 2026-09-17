@@ -1511,10 +1511,10 @@
     },
     "IR": {
       "name": "Iran (Islamic Republic of)",
-      "surveillanceExists": "N",
+      "surveillanceExists": "Y",
       "legalChallenge": "N",
-      "trackerLink": "https://privacyinternational.org/examples/edtech-surveillance-tracker?tid%5B%5D=281&tid_1=Iran+%28356%29#edit-actions",
-      "firstExampleYear": null,
+      "trackerLink": "https://privacyinternational.org/examples/edtech-surveillance-tracker?tid%5B%5D=281&tid_1=Iran#edit-actions",
+      "firstExampleYear": 2023,
       "subnational": {
         "enabled": false,
         "levelName": null,
