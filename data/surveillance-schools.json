@@ -1488,7 +1488,7 @@
       "surveillanceExists": "Y",
       "legalChallenge": "N",
       "trackerLink": "https://privacyinternational.org/examples/edtech-surveillance-tracker?tid%5B%5D=281&tid_1=India+%28121%29#edit-actions",
-      "firstExampleYear": null,
+      "firstExampleYear": 2021,
       "subnational": {
         "enabled": false,
         "levelName": null,
@@ -1511,10 +1511,10 @@
     },
     "IR": {
       "name": "Iran (Islamic Republic of)",
-      "surveillanceExists": "Y",
+      "surveillanceExists": "N",
       "legalChallenge": "N",
       "trackerLink": "https://privacyinternational.org/examples/edtech-surveillance-tracker?tid%5B%5D=281&tid_1=Iran+%28356%29#edit-actions",
-      "firstExampleYear": 2023,
+      "firstExampleYear": null,
       "subnational": {
         "enabled": false,
         "levelName": null,
@@ -2463,7 +2463,7 @@
       "surveillanceExists": "Y",
       "legalChallenge": "N",
       "trackerLink": "https://privacyinternational.org/examples/edtech-surveillance-tracker?tid%5B%5D=281&tid_1=Portugal+%28362%29#edit-actions",
-      "firstExampleYear": null,
+      "firstExampleYear": 2023,
       "subnational": {
         "enabled": false,
         "levelName": null,
@@ -3308,7 +3308,7 @@
       "surveillanceExists": "Y",
       "legalChallenge": "N",
       "trackerLink": "https://privacyinternational.org/examples/edtech-surveillance-tracker?tid%5B%5D=281&tid_1=Vietnam#edit-actions",
-      "firstExampleYear": null,
+      "firstExampleYear": 2024,
       "subnational": {
         "enabled": false,
         "levelName": null,
