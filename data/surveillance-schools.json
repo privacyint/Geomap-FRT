@@ -1693,10 +1693,10 @@
     },
     "XK": {
       "name": "Kosovo",
-      "surveillanceExists": "N",
+      "surveillanceExists": "Y",
       "legalChallenge": "N",
-      "trackerLink": "https://privacyinternational.org/examples/edtech-surveillance-tracker?tid%5B%5D=281&tid_1=Kosovo+%28354%29#edit-actions",
-      "firstExampleYear": null,
+      "trackerLink": "https://privacyinternational.org/examples/edtech-surveillance-tracker?tid%5B%5D=281&tid_1=Kosovo#edit-actions",
+      "firstExampleYear": 2021,
       "subnational": {
         "enabled": false,
         "levelName": null,
