@@ -245,6 +245,34 @@
         margin: 4px 0 6px 0;
       }
 
+      .timeline-year-markers {
+        display: flex;
+        justify-content: space-between;
+        color: #657188;
+        font-size: 10px;
+        line-height: 1;
+        user-select: none;
+      }
+
+      .timeline-year-marker {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        min-width: 0;
+      }
+
+      .timeline-year-marker::before {
+        content: '';
+        width: 1px;
+        height: 5px;
+        background: #9aa8bd;
+      }
+
+      .timeline-year-marker-label {
+        white-space: nowrap;
+      }
+
       .timeline-years {
         display: flex;
         justify-content: space-between;
@@ -574,6 +602,7 @@
           disabled
           aria-label="Timeline year"
         />
+        <div class="timeline-year-markers" id="timelineYearMarkers" aria-hidden="true"></div>
         <div class="timeline-years" aria-hidden="true">
           <span id="timelineStartYearLabel">-</span>
           <span id="timelineEndYearLabel">-</span>
@@ -879,6 +908,7 @@
       function initializeTimeline(baseValues) {
         var timelinePanel = document.getElementById('timelinePanel');
         var timelineRange = document.getElementById('timelineRange');
+        var timelineYearMarkers = document.getElementById('timelineYearMarkers');
         var timelineStartYearLabel = document.getElementById('timelineStartYearLabel');
         var timelineEndYearLabel = document.getElementById('timelineEndYearLabel');
         var timelinePlayButton = document.getElementById('timelinePlayButton');
@@ -935,6 +965,22 @@
 
             if (timelineEndYearLabel) {
               timelineEndYearLabel.textContent = String(endYear);
+            }
+
+            if (timelineYearMarkers) {
+              timelineYearMarkers.innerHTML = '';
+
+              for (var year = startYear; year <= endYear; year += 1) {
+                var marker = document.createElement('span');
+                marker.className = 'timeline-year-marker';
+
+                var markerLabel = document.createElement('span');
+                markerLabel.className = 'timeline-year-marker-label';
+                markerLabel.textContent = String(year);
+
+                marker.appendChild(markerLabel);
+                timelineYearMarkers.appendChild(marker);
+              }
             }
 
             timelinePanel.hidden = false;
